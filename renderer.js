@@ -4,6 +4,8 @@ const R = require("ramda");
 // be executed in the renderer process for that window.
 // All of the Node.js APIs are available in this process.
 
+const MAX_DISPLAY_LENGTH = 20;
+
 const stations = [
   {
     id: 317,
@@ -76,6 +78,6 @@ Promise.all(promisedDepartures)
     const sortedDepartures = departures.sort((a, b) =>
       a.wait_time > b.wait_time ? 1 : -1
     );
-    addRowToDepartureTable(sortedDepartures);
+    addRowToDepartureTable(sortedDepartures.slice(0, MAX_DISPLAY_LENGTH));
   })
   .catch(err => console.log(`failed to fetch data for station. ${err}`));

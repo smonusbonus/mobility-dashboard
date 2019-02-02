@@ -5,6 +5,7 @@ const R = require("ramda");
 // All of the Node.js APIs are available in this process.
 
 const MAX_DISPLAY_LENGTH = 20;
+const REFRESH_INTERVAL_MS = 30000;
 
 const stations = [
   {
@@ -55,6 +56,9 @@ const fetchDepartureDates = stationId => {
 
 const addRowToDepartureTable = departures => {
   const departureTable = document.querySelector("#departure-table");
+  // reset old table data
+  departureTable.innerHTML = "";
+
   departures.forEach(departure => {
     const row = document.createElement("tr");
 
@@ -85,17 +89,27 @@ const filterBelowWalkingTime = departures => {
   });
 };
 
-const promisedDepartures = stations.map(station =>
-  fetchDepartureDates(station.id)
-);
+const refreshDepartureDates = () => {
+  const promisedDepartures = stations.map(station =>
+    fetchDepartureDates(station.id)
+  );
 
-Promise.all(promisedDepartures)
-  .then(departures => R.flatten(departures))
-  .then(filterBelowWalkingTime)
-  .then(departures => {
-    const sortedDepartures = departures.sort((a, b) =>
-      a.wait_time > b.wait_time ? 1 : -1
-    );
-    addRowToDepartureTable(sortedDepartures.slice(0, MAX_DISPLAY_LENGTH));
-  })
-  .catch(err => console.log(`failed to fetch data for station. ${err}`));
+  Promise.all(promisedDepartures)
+    .then(departures => R.flatten(departures))
+    .then(filterBelowWalkingTime)
+    .then(departures => {
+      const sortedDepartures = departures.sort((a, b) =>
+        a.wait_time > b.wait_time ? 1 : -1
+      );
+      addRowToDepartureTable(sortedDepartures.slice(0, MAX_DISPLAY_LENGTH));
+    })
+    .catch(err => console.log(`failed to fetch data for station. ${err}`));
+};
+
+// fill table initially
+refreshDepartureDates();
+
+// fill table every 30s
+setInterval(() => {
+  refreshDepartureDates();
+}, REFRESH_INTERVAL_MS);

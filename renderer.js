@@ -24,9 +24,18 @@ const stations = [
   }
 ];
 
+const getStationById = id => {
+  return stations.find(station => station.id === id);
+};
+
 const getStationName = id => {
-  const station = stations.find(station => station.id === id);
+  const station = getStationById(id);
   return station ? station.name : "";
+};
+
+const getStationWalkingTime = id => {
+  const station = getStationById(id);
+  return station ? station.walkingTime : "";
 };
 
 const fetchDepartureDates = stationId => {
@@ -37,7 +46,8 @@ const fetchDepartureDates = stationId => {
       departures.map(dep =>
         Object.assign(dep, {
           wait_time: parseInt(dep.wait_time, 10),
-          station_name: getStationName(stationId)
+          station_name: getStationName(stationId),
+          station_id: stationId
         })
       )
     );
@@ -68,12 +78,20 @@ const addRowToDepartureTable = departures => {
   });
 };
 
+const filterBelowWalkingTime = departures => {
+  return departures.filter(dep => {
+    const stationWalkingTime = getStationWalkingTime(dep.station_id);
+    return stationWalkingTime > dep.wait_time ? false : true;
+  });
+};
+
 const promisedDepartures = stations.map(station =>
   fetchDepartureDates(station.id)
 );
 
 Promise.all(promisedDepartures)
   .then(departures => R.flatten(departures))
+  .then(filterBelowWalkingTime)
   .then(departures => {
     const sortedDepartures = departures.sort((a, b) =>
       a.wait_time > b.wait_time ? 1 : -1

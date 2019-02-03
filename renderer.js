@@ -6,6 +6,7 @@ const R = require("ramda");
 
 const MAX_DISPLAY_LENGTH = 20;
 const REFRESH_INTERVAL_MS = 30000;
+const DATA_SERVICE_BASE_URL = "https://mobility-dashboard-230611.appspot.com";
 
 const stations = [
   {
@@ -40,7 +41,7 @@ const getStationWalkingTime = id => {
 };
 
 const fetchDepartureDates = stationId => {
-  const url = `http://127.0.0.1:5000/stations/${stationId}/departures/`;
+  const url = `${DATA_SERVICE_BASE_URL}/stations/${stationId}/departures/`;
   return fetch(url)
     .then(data => data.json())
     .then(departures =>

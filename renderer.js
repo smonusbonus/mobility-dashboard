@@ -4,7 +4,7 @@ const R = require("ramda");
 // be executed in the renderer process for that window.
 // All of the Node.js APIs are available in this process.
 
-const MAX_DISPLAY_LENGTH = 20;
+const MAX_DISPLAY_LENGTH = 10;
 const REFRESH_INTERVAL_MS = 30000;
 const DATA_SERVICE_BASE_URL = "https://mobility-dashboard-230611.appspot.com";
 
@@ -55,28 +55,60 @@ const fetchDepartureDates = stationId => {
     );
 };
 
+const addHeaderRowToDepartureTable = departureTable => {
+  const headerRow = document.createElement("tr");
+  headerRow.classList = "header-row";
+
+  const lineCell = document.createElement("th");
+  lineCell.innerText = "Linie";
+  lineCell.classList = "line";
+  headerRow.appendChild(lineCell);
+
+  const directionCell = document.createElement("th");
+  directionCell.innerText = "Richtung";
+  directionCell.classList = "direction";
+  headerRow.appendChild(directionCell);
+
+  const stationNameCell = document.createElement("th");
+  stationNameCell.innerText = "Station";
+  stationNameCell.classList = "station-name";
+  headerRow.appendChild(stationNameCell);
+
+  const departureTimeCell = document.createElement("th");
+  departureTimeCell.innerText = "Abfahrt";
+  departureTimeCell.classList = "wait-time";
+  headerRow.appendChild(departureTimeCell);
+
+  departureTable.appendChild(headerRow);
+};
+
 const addRowToDepartureTable = departures => {
   const departureTable = document.querySelector("#departure-table");
   // reset old table data
   departureTable.innerHTML = "";
+  addHeaderRowToDepartureTable(departureTable);
 
   departures.forEach(departure => {
     const row = document.createElement("tr");
 
     const lineCell = document.createElement("td");
     lineCell.innerText = departure.line_id;
+    lineCell.classList = "line";
     row.appendChild(lineCell);
 
     const directionCell = document.createElement("td");
     directionCell.innerText = departure.direction;
+    directionCell.classList = "direction";
     row.appendChild(directionCell);
 
     const stationNameCell = document.createElement("td");
     stationNameCell.innerText = departure.station_name;
+    stationNameCell.classList = "station-name";
     row.appendChild(stationNameCell);
 
     const waitTimeCell = document.createElement("td");
-    waitTimeCell.innerText = departure.wait_time + " min";
+    waitTimeCell.innerText = departure.wait_time + " Min";
+    waitTimeCell.classList = "wait-time";
     row.appendChild(waitTimeCell);
 
     departureTable.appendChild(row);

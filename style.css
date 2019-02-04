@@ -1,0 +1,69 @@
+body {
+  font-family: "Helvetica", sans-serif;
+  font-size: 30px;
+  margin: 0;
+  padding: 0;
+}
+
+.departure-table {
+  width: 100%;
+  border-spacing: 6px;
+  color: white;
+}
+
+.header-row {
+  border-spacing: 2px;
+}
+
+.departure-table tr {
+  line-height: 1.6;
+  transition: all 0.3s ease-in-out;
+  border-color: transparent;
+}
+
+.departure-table th,
+.departure-table td {
+  padding: 0 16px;
+  transition: all 0.3s ease-in-out;
+}
+
+td.station-name,
+td.direction {
+  background-color: #e00024;
+}
+
+th {
+  text-align: left;
+  color: #000000;
+}
+
+th.wait-time {
+  text-align: center;
+}
+
+th.wait-time::after {
+  content: "➔";
+  font-size: 30px;
+  margin-left: 15px;
+}
+
+.departure-table td {
+  font-weight: 700;
+}
+
+td.line {
+  font-size: 34px;
+  padding: 0 4px;
+}
+
+td.line,
+td.wait-time {
+  text-align: center;
+  background-color: #000000;
+}
+
+td.wait-time {
+  background-color: #000000;
+  color: #ffc230;
+  font-family: "Courier New", Courier, monospace;
+}

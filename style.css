@@ -65,5 +65,6 @@ td.wait-time {
 td.wait-time {
   background-color: #000000;
   color: #ffc230;
-  font-family: "Courier New", Courier, monospace;
+  font-family: "VT323", monospace;
+  font-size: 40px;
 }

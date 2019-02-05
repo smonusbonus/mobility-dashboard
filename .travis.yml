@@ -1,6 +1,7 @@
 language: node_js
 node_js:
   - "10"
+sudo: true
 matrix:
   include:
     - os: linux
@@ -9,6 +10,6 @@ matrix:
 notifications:
   email: false
 before_install:
-  - apt-get install fakeroot
+  - sudo apt-get install fakeroot
 script:
   - yarn dist-packager && yarn deb

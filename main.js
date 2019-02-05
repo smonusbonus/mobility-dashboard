@@ -13,7 +13,11 @@ function createWindow() {
   mainWindow.loadFile("index.html");
 
   // Open the DevTools.
-  // mainWindow.webContents.openDevTools()
+  mainWindow.webContents.openDevTools();
+
+  process.on("uncaughtException", function(err) {
+    console.log(err);
+  });
 
   // Emitted when the window is closed.
   mainWindow.on("closed", function() {

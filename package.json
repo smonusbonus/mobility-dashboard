@@ -22,6 +22,12 @@
           "arch": [
             "armv7l"
           ]
+        },
+        {
+          "target": "deb",
+          "arch": [
+            "armv7l"
+          ]
         }
       ]
     }

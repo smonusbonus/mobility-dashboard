@@ -15,7 +15,10 @@
   "build": {
     "appId": "mobility.dashboard",
     "linux": {
-      "publish": "github",
+      "publish": [
+        "always ",
+        "github"
+      ],
       "target": [
         {
           "target": "AppImage",

@@ -9,13 +9,14 @@
     "dist": "npm run reset && electron-builder",
     "dist-packager": "npm run reset && electron-packager . mobility-dashboard --platform=linux --arch=armv7l",
     "reset": "rm -rf ./dist && mkdir ./dist",
-    "deb": "npm run reset && electron-installer-debian --src ./mobility-dashboard-linux-armv7l --dest dist/installers/ --arch armv7l"
+    "deb": "npm run reset && electron-installer-debian --src ./mobility-dashboard-linux-armv7l --dest dist/installers/ --arch armv7l",
+    "release": "build"
   },
   "build": {
     "appId": "mobility.dashboard",
     "linux": {
       "publish": [
-        "GitHub"
+        "always"
       ],
       "target": [
         {

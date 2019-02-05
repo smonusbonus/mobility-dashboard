@@ -9,12 +9,4 @@ matrix:
 notifications:
   email: false
 script:
-  - yarn dist
-# deploy:
-#   provider: releases
-#   api_key:
-#     secure: me9f8D96Qjj0FYFAwzFWNpJzKUjPigfmNUAfnEdg0coePnZgImjYDKyLXFzVbZJARdNNDlwSjfMlvtF/R3tAtpDbsXSdSt4hAoWlxU2F2PTFMG9AZLYnwokOj5jfNxF6jD5XYrQUMzWhi2as4FLQwQocKEjufOYa8wl8c1QN4ZibPFcLEAMPT1F//9waYaboEKgvwYqwFGaIad+UghimSCJp/P8W6b/Cxo3iu3vwe95UgBdGB3MxlXNbpeDvpGslcKhsrjafS2HZryIM7/p0IDo2vfI/tl53VESjQI4kv6BIKVh3ZOQ9HfJ38nV0mqa6+5Fs4Xp8VhpCpSQpAwgK7GMdJ/VXcV8GtE4GV2LKQc6FDpJWZ761MTZQLAhnwQA8iOV7yy6cqLITxTRyyeU5bCRGmQAyj6vqKzKkBUELVUIcIXHQ8QG67APLk0nOmcbtF/MAVlUefWlsUYdFOAkNxGy8nPuU97cMcq+kkrxmkc+BsInSvP35xmlmN0dP9LknwdWg/ttkcwFGahu/nAHsal+X3jjmuR/+Xf78RNaHh4RMyCs6RvGdIk7baW0GvONY1zsp4yhR5AYxxRhyr9SpcKrmKGfsz85+F4FPizb8Xz8h+InRg68P17PkaFtoFgynFo/cNmOs053uiXuaVW5LNwSCTFUe/CKhomjnlpsFbxY=
-#   file: ./dist/mobility-dashboard\ 1.0.0\ armv7l.AppImage
-#   skip_cleanup: true
-#   on:
-#     repo: smonusbonus/mobility-dashboard
+  - yarn dist-packager && yarn deb

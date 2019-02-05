@@ -1,23 +1,38 @@
 {
-  "name": "electron-quick-start",
+  "name": "mobility-dashboard",
   "version": "1.0.0",
-  "description": "A minimal Electron application",
+  "description": "A mobility dashboard application for raspberry pi",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "npm run reset && electron-builder",
+    "dist-packager": "npm run reset && electron-packager . mobility-dashboard --platform=linux --arch=armv7l",
+    "reset": "rm -rf ./dist && mkdir ./dist",
+    "deb": "npm run reset && electron-installer-debian --src ./mobility-dashboard-linux-armv7l --dest dist/installers/ --arch armv7l"
+  },
+  "build": {
+    "appId": "mobility.dashboard",
+    "linux": {
+      "target": [
+        {
+          "target": "AppImage",
+          "arch": [
+            "armv7l"
+          ]
+        }
+      ]
+    }
   },
   "repository": "https://github.com/electron/electron-quick-start",
-  "keywords": [
-    "Electron",
-    "quick",
-    "start",
-    "tutorial",
-    "demo"
-  ],
-  "author": "GitHub",
-  "license": "CC0-1.0",
+  "author": "Simon Kreiser <simokrei@gmail.com>",
+  "license": "UNLICENSED",
   "devDependencies": {
-    "electron": "^4.0.3"
+    "electron": "4.0.4",
+    "electron-builder": "20.38.5",
+    "electron-installer-debian": "1.1.0",
+    "electron-packager": "13.0.1",
+    "yarn": "1.13.0"
   },
   "dependencies": {
     "ramda": "0.26.1"

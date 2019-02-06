@@ -7,10 +7,7 @@
     "start": "electron .",
     "pack": "electron-builder --dir",
     "dist": "npm run reset && electron-builder",
-    "dist-packager": "npm run reset && electron-packager . mobility-dashboard --platform=linux --arch=armv7l",
-    "reset": "rm -rf ./dist && mkdir ./dist",
-    "deb": "npm run reset && electron-installer-debian --src ./mobility-dashboard-linux-armv7l --dest dist/installers/ --arch armv7l",
-    "release": "build"
+    "reset": "rm -rf ./dist && mkdir ./dist"
   },
   "build": {
     "appId": "mobility.dashboard",
@@ -19,12 +16,6 @@
       "target": [
         {
           "target": "AppImage",
-          "arch": [
-            "armv7l"
-          ]
-        },
-        {
-          "target": "deb",
           "arch": [
             "armv7l"
           ]
@@ -38,8 +29,6 @@
   "devDependencies": {
     "electron": "1.6.16",
     "electron-builder": "20.38.5",
-    "electron-installer-debian": "1.1.0",
-    "electron-packager": "13.0.1",
     "yarn": "1.13.0"
   },
   "dependencies": {

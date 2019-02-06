@@ -1,5 +1,6 @@
 // Modules to control application life and create native browser window
 const { app, BrowserWindow } = require("electron");
+const url = require("url");
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -10,14 +11,16 @@ function createWindow() {
   mainWindow = new BrowserWindow({ width: 1024, height: 600 });
 
   // and load the index.html of the app.
-  mainWindow.loadFile("index.html");
+  mainWindow.loadURL(
+    url.format({
+      pathname: __dirname + "/index.html",
+      protocol: "file:",
+      slashes: true
+    })
+  );
 
   // Open the DevTools.
-  mainWindow.webContents.openDevTools();
-
-  process.on("uncaughtException", function(err) {
-    console.log(err);
-  });
+  // mainWindow.webContents.openDevTools();
 
   // Emitted when the window is closed.
   mainWindow.on("closed", function() {
@@ -48,6 +51,11 @@ app.on("activate", function() {
   if (mainWindow === null) {
     createWindow();
   }
+});
+
+// last resort: catch uncaught exceptions and prevent app from crashing
+process.on("uncaughtException", function(err) {
+  console.log(err);
 });
 
 // In this file you can include the rest of your app's specific main process

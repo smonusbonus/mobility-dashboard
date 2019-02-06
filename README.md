@@ -43,3 +43,7 @@ Note: If you're using Linux Bash for Windows, [see this guide](https://www.howto
 ## License
 
 [CC0 1.0 (Public Domain)](LICENSE.md)
+
+## Notes
+
+Using electron version 1.6.16 since that seems to be the only version working with raspbian.

@@ -12,4 +12,4 @@ notifications:
 before_install:
   - sudo apt-get install fakeroot
 script:
-  - yarn dist-packager && yarn deb
+  - yarn dist

@@ -7,7 +7,8 @@
     "start": "electron .",
     "pack": "electron-builder --dir",
     "dist": "npm run reset && electron-builder",
-    "reset": "rm -rf ./dist && mkdir ./dist"
+    "reset": "rm -rf ./dist && mkdir ./dist",
+    "deploy": "node deploy.js"
   },
   "build": {
     "appId": "mobility.dashboard",
@@ -27,8 +28,11 @@
   "author": "Simon Kreiser <simokrei@gmail.com>",
   "license": "UNLICENSED",
   "devDependencies": {
+    "download": "7.1.0",
     "electron": "1.6.16",
     "electron-builder": "20.38.5",
+    "mz": "2.7.0",
+    "octonode": "0.9.5",
     "yarn": "1.13.0"
   },
   "dependencies": {

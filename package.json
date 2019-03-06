@@ -25,6 +25,9 @@
           ]
         }
       ]
+    },
+    "appImage": {
+      "systemIntegration": "doNotAsk"
     }
   },
   "repository": "https://github.com/smonusbonus/mobility-dashboard",

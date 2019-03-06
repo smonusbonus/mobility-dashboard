@@ -6,7 +6,7 @@ const download = require("download");
 
 const version = packageData.version;
 const fileName = `mobility-dashboard-${version}-armv7l.AppImage`;
-const dashboardIp = "192.168.0.9";
+const dashboardIp = "192.168.0.10";
 
 const client = github.client(process.env.GITHUB_ACCESS_TOKEN);
 

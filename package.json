@@ -12,6 +12,7 @@
   },
   "build": {
     "appId": "mobility.dashboard",
+    "productName": "Mobility Dashboard",
     "linux": {
       "publish": {
         "provider": "github",

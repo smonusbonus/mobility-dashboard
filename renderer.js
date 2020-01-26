@@ -6,7 +6,7 @@ const R = require("ramda");
 
 const MAX_DISPLAY_LENGTH = 10;
 const REFRESH_INTERVAL_MS = 30000;
-const DATA_SERVICE_BASE_URL = "https://mobility-dashboard-230611.appspot.com";
+const DATA_SERVICE_BASE_URL = "https://kvb-api.herokuapp.com/";
 
 const stations = [
   {

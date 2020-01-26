@@ -1,6 +1,6 @@
 {
   "name": "mobility-dashboard",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "description": "A mobility dashboard application for raspberry pi",
   "main": "main.js",
   "scripts": {

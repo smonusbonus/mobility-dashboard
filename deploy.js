@@ -6,11 +6,13 @@ const download = require("download");
 
 const version = packageData.version;
 const fileName = `mobility-dashboard-${version}-armv7l.AppImage`;
-const dashboardIp = "192.168.0.10";
+// get IP by executing: ping raspberrypi.local
+// TODO: automate this
+const dashboardAddress = "192.168.0.14";
 
-const client = github.client(process.env.GITHUB_ACCESS_TOKEN);
+const ghClient = github.client(process.env.GITHUB_ACCESS_TOKEN);
 
-client
+ghClient
   .repo("smonusbonus/mobility-dashboard")
   .releases((err, status, body, headers) => {
     const latestRelease = status[0];
@@ -26,8 +28,18 @@ client
         return exec(
           `sshpass -p ${
             process.env.RASPBERRY_PI_PASSWORD
-          } scp ${fileName} pi@${dashboardIp}:`
+          } scp ${fileName} pi@${dashboardAddress}`
         );
+      })
+      .then(() => {
+        // make file executable
+        console.log("Moved file to Raspberry, make executable");
+        return exec(
+          `sshpass -p ${
+            process.env.RASPBERRY_PI_PASSWORD
+          } ssh pi@${dashboardAddress} chmod a+x ${fileName}`
+        );
+
       })
       .then(stdout => {
         console.log(stdout);

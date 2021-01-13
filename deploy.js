@@ -31,15 +31,24 @@ ghClient
           } scp ${fileName} pi@${dashboardAddress}`
         );
       })
-      .then(() => {
+      .then((result) => {
+        console.log(result);
+        console.log("Moved file to Raspberry, list all files in home dir");
+        return exec(
+          `sshpass -p ${
+            process.env.RASPBERRY_PI_PASSWORD
+          } ssh pi@${dashboardAddress} ls -a`
+        );
+      })
+      .then((result) => {
+        console.log(result);
         // make file executable
-        console.log("Moved file to Raspberry, make executable");
+        console.log("make image file executable");
         return exec(
           `sshpass -p ${
             process.env.RASPBERRY_PI_PASSWORD
           } ssh pi@${dashboardAddress} chmod a+x ${fileName}`
         );
-
       })
       .then(stdout => {
         console.log(stdout);

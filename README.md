@@ -1,4 +1,4 @@
-# electron-quick-start
+# Public Transport Mobility Dashboard
 
 **Clone and run for a quick way to see Electron in action.**
 
@@ -17,6 +17,10 @@ You can learn more about each of these components within the [Quick Start Guide]
 ## Builds/CI
 
 [Travis CI builds](https://travis-ci.org/smonusbonus/mobility-dashboard/builds)
+
+## Deployments
+
+Create a `.env` file and add Github access token and the Raspberry PI password to it. Afterwards tun `npm run deploy`. You need `sshpass` for this to work.
 
 ## To Use
 

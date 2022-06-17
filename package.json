@@ -33,7 +33,7 @@
   "license": "UNLICENSED",
   "devDependencies": {
     "download": "7.1.0",
-    "electron": "13.3.0",
+    "electron": "15.5.5",
     "electron-builder": "22.11.7",
     "mz": "2.7.0",
     "octonode": "0.10.2",
